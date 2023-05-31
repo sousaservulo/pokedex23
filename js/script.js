@@ -3,6 +3,7 @@ const pokemonName = document.querySelector('.pokemon__name');
 const pokemonNumber = document.querySelector('.pokemon__number');
 const pokemonImage = document.querySelector('.pokemon_img');
 
+
 /// constantes do form ///
 const form = document.querySelector('.form');
 const input = document.querySelector('.input__search');
@@ -35,12 +36,36 @@ const renderPokemon = async (pokemon) => {
     const data = await fetchPokemon(pokemon);
 
     if(data){
-        pokemonImage.style.display= 'block';
-        pokemonName.innerHTML = data.name;
-        pokemonNumber.innerHTML = data.id;
-        pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
+        /* atualmente os gifs só estão disponiveis ate o pokemon 649, após esse numero os pokemons estão em outro caminho, 
+        dividido por gerações, implementei esses ifs para pegar as imagens desses pokemons, sendo que não seriam gifs e sim imagem png.
+        
+        if(data.id >649){
+            pokemonImage.style.display= 'block';
+            pokemonName.innerHTML = data.name;
+            pokemonNumber.innerHTML = data.id;
+            pokemonImage.src = data['sprites']['versions']['generation-vi']['omegaruby-alphasapphire']['front_default']
 
-        input.value = ''
+            input.value = ''
+            searchPokemon = data.id;
+        }else if(data.id > 722){
+            pokemonImage.style.display= 'block';
+            pokemonName.innerHTML = data.name;
+            pokemonNumber.innerHTML = data.id;
+            pokemonImage.src = data['sprites']['versions']['generation-vii']['ultra-sun-ultra-moon']['front_default']
+
+            input.value = ''
+            searchPokemon = data.id;
+        
+        }else{*/
+            pokemonImage.style.display= 'block';
+            pokemonName.innerHTML = data.name;
+            pokemonNumber.innerHTML = data.id;
+            pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
+
+            input.value = ''
+            searchPokemon = data.id;
+        //}
+        
 
     } else {
         input.value = '';
@@ -61,8 +86,12 @@ form.addEventListener('submit',(event) =>{
 
 
 buttonPrev.addEventListener('click',() =>{
-    searchPokemon -=1;
-    renderPokemon(searchPokemon);
+    if (searchPokemon > 1){
+        searchPokemon -=1;
+        renderPokemon(searchPokemon);
+    } 
+    
+   
     
     
 });
