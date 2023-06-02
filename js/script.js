@@ -38,7 +38,8 @@ const renderPokemon = async (pokemon) => {
     if(data){
         /* atualmente os gifs só estão disponiveis ate o pokemon 649, após esse numero os pokemons estão em outro caminho, 
         dividido por gerações, implementei esses ifs para pegar as imagens desses pokemons, sendo que não seriam gifs e sim imagem png.
-        
+        Até o momento, foi implementado para pegar ate a 6a geração, que vai até o pokemon 721.
+        */
         if(data.id >649){
             pokemonImage.style.display= 'block';
             pokemonName.innerHTML = data.name;
@@ -47,7 +48,7 @@ const renderPokemon = async (pokemon) => {
 
             input.value = ''
             searchPokemon = data.id;
-        }else if(data.id > 722){
+        }/*if(data.id > 722){
             pokemonImage.style.display= 'block';
             pokemonName.innerHTML = data.name;
             pokemonNumber.innerHTML = data.id;
@@ -56,7 +57,7 @@ const renderPokemon = async (pokemon) => {
             input.value = ''
             searchPokemon = data.id;
         
-        }else{*/
+        }*/else{
             pokemonImage.style.display= 'block';
             pokemonName.innerHTML = data.name;
             pokemonNumber.innerHTML = data.id;
@@ -64,7 +65,7 @@ const renderPokemon = async (pokemon) => {
 
             input.value = ''
             searchPokemon = data.id;
-        //}
+        }
         
 
     } else {
